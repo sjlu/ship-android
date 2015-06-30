@@ -4,14 +4,30 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+import com.imparcel.android.models.Package;
+
+import java.io.IOException;
 
 
 public class MainActivity extends ActionBarActivity {
 
+    ListView listview;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.main);
+
+        Package pkg = new Package("9374889949033167223216");
+//        try {
+//            pkg.getTrackingDetails();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+        listview = (ListView) findViewById(R.id.listview);
+        listview.setAdapter(new PackageList(this, new String[] {}));
     }
 
 
