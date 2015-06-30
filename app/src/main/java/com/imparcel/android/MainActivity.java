@@ -20,11 +20,12 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.main);
 
         Package pkg = new Package("9374889949033167223216");
-//        try {
-//            pkg.getTrackingDetails();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+//        pkg.save();
+        try {
+            pkg.getTrackingDetails();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         listview = (ListView) findViewById(R.id.listview);
         listview.setAdapter(new PackageList(this, new String[] {}));

@@ -1,5 +1,7 @@
 package com.imparcel.android.models;
 
+import android.util.Log;
+
 import com.orm.SugarRecord;
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
@@ -15,7 +17,7 @@ public class Package extends SugarRecord<Package> {
     String tracking_code;
     String carrier;
     String status;
-    OkHttpClient httpClient = new OkHttpClient();
+//    OkHttpClient httpClient = new OkHttpClient();
 
 
     public Package() {}
@@ -32,16 +34,18 @@ public class Package extends SugarRecord<Package> {
     public void getTrackingDetails() throws IOException {
 
         String url = "http://imparcel.com/api/tracking/" + this.tracking_code;
-        if (!this.carrier.isEmpty()) {
-            url += "?" + this.carrier;
-        }
+//        if (!this.carrier.isEmpty()) {
+//            url = url + "?" + this.carrier;
+//        }
 
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
+        Log.e("url", url);
 
-        Response response = httpClient.newCall(request).execute();
-        System.out.println(response.body().string());
+//        Request request = new Request.Builder()
+//                .url(url)
+//                .build();
+//
+//        Response response = httpClient.newCall(request).execute();
+//        System.out.println(response.body().string());
 
 
     }
