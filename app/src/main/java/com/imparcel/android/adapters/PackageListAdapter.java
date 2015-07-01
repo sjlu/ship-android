@@ -74,6 +74,12 @@ public class PackageListAdapter extends BaseAdapter {
 
     }
 
+    public void refresh() {
+        this.pkgs = Package.listAll(Package.class);
+        this.notifyDataSetChanged();
+    }
+
+
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         final PackageListAdapter packageListAdapter = this;

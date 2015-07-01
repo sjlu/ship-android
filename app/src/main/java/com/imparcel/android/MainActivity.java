@@ -10,10 +10,13 @@ import com.imparcel.android.adapters.PackageListAdapter;
 
 import java.util.List;
 
+import javax.xml.transform.Result;
+
 
 public class MainActivity extends AppCompatActivity {
 
     ListView listview;
+    PackageListAdapter packageListAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +32,23 @@ public class MainActivity extends AppCompatActivity {
 //        Package pkg2 = new Package("1Z88Y7Y20347012571");
 //        pkg2.save();
 
-        listview = (ListView) findViewById(R.id.listview);
+        packageListAdapter = new PackageListAdapter(this, this);
 
-        listview.setAdapter(new PackageListAdapter(this, this));
+        listview = (ListView) findViewById(R.id.listview);
+        listview.setAdapter(packageListAdapter);
     }
 
     public void openAddActivity(View view) {
         Intent intent = new Intent(this, AddActivity.class);
-        startActivity(intent);
+        startActivityForResult(intent, 1);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1) {
+            packageListAdapter.refresh();
+        }
+    }
+
 
 }

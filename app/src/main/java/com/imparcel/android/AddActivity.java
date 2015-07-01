@@ -1,5 +1,6 @@
 package com.imparcel.android;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -41,6 +42,8 @@ public class AddActivity extends AppCompatActivity {
             case R.id.action_add:
                 Package pkg = new Package(this.textInput.getText().toString());
                 pkg.save();
+                setResult(-1);
+                finish();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
