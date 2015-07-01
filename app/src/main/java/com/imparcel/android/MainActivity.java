@@ -8,6 +8,7 @@ import android.widget.ListView;
 import com.imparcel.android.models.Package;
 
 import java.io.IOException;
+import java.util.List;
 
 
 public class MainActivity extends ActionBarActivity {
@@ -19,38 +20,19 @@ public class MainActivity extends ActionBarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        Package pkg = new Package("9374889949033167223216");
-//        pkg.save();
-        try {
-            pkg.getTrackingDetails();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Package.deleteAll(Package.class);
+
+        Package pkg1 = new Package("9374889949033167223216");
+        pkg1.save();
+
+        Package pkg2 = new Package("1Z88Y7Y20347012571");
+        pkg2.save();
+
+        pkg1.getTrackingDetails();
+
+        List<Package> packagesList = Package.listAll(Package.class);
 
         listview = (ListView) findViewById(R.id.listview);
-        listview.setAdapter(new PackageList(this, new String[] {}));
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
+        listview.setAdapter(new PackageList(this, packagesList));
     }
 }
