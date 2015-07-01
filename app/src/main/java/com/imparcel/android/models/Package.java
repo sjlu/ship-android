@@ -30,6 +30,7 @@ public class Package extends SugarRecord<Package> {
     public Package() {}
 
     public Package(String tracking_code) {
+        Log.e("Input", tracking_code);
         this.tracking_code = tracking_code;
     }
 

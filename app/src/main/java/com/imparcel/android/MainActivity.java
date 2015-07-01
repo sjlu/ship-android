@@ -1,7 +1,9 @@
 package com.imparcel.android;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ListView;
 import com.imparcel.android.models.Package;
 import com.imparcel.android.adapters.PackageListAdapter;
@@ -31,4 +33,10 @@ public class MainActivity extends AppCompatActivity {
 
         listview.setAdapter(new PackageListAdapter(this, this));
     }
+
+    public void openAddActivity(View view) {
+        Intent intent = new Intent(this, AddActivity.class);
+        startActivity(intent);
+    }
+
 }
