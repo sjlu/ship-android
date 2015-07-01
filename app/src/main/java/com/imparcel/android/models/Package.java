@@ -14,21 +14,18 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  * Created by sjlu on 6/30/15.
  */
 public class Package extends SugarRecord<Package> {
 
-    public static final String TAG = Package.class.getSimpleName();
-
-    String tracking_code;
-    String carrier;
-    String status;
-    String name;
-    @Ignore
-    OkHttpClient httpClient = new OkHttpClient();
-
+    public String tracking_code;
+    public String carrier;
+    public String status;
+    public String name;
 
     public Package() {}
 
@@ -54,54 +51,6 @@ public class Package extends SugarRecord<Package> {
         name = name + this.tracking_code;
 
         return name;
-    }
-
-    public String getStatus() {
-        return this.status;
-    }
-
-    private void storeResponse(String jsonData) throws JSONException {
-        JSONObject packageData = null;
-        packageData = new JSONObject(jsonData);
-        this.name = packageData.getString("name_formatted");
-        this.carrier = packageData.getString("carrier");
-        this.status = packageData.getString("status_formatted");
-        this.save();
-    }
-
-    public void getTrackingDetails() {
-        Package pkg = this;
-
-        String url = "http://imparcel.com/api/tracking/" + this.tracking_code;
-        if (this.carrier != null) {
-            url = url + "?" + this.carrier;
-        }
-
-        Log.e("url", url);
-
-        Request request = new Request.Builder()
-                .url(url)
-                .build();
-
-        Call call =  httpClient.newCall(request);
-
-        call.enqueue(new Callback() {
-            @Override
-            public void onFailure(Request request, IOException e) {
-
-            }
-
-            @Override
-            public void onResponse(Response response) throws IOException {
-                try {
-                    storeResponse(response.body().string());
-                }
-                catch (JSONException e) {
-                    Log.e(TAG, null, e);
-                }
-            }
-        });
-
     }
 
 }
