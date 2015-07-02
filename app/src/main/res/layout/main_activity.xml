@@ -1,4 +1,4 @@
-<RelativeLayout
+<android.support.v4.widget.SwipeRefreshLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -7,7 +7,13 @@
     android:paddingLeft="0dp"
     android:paddingRight="0dp"
     android:paddingTop="0dp"
-    android:paddingBottom="0dp" tools:context=".MainActivity">
+    android:paddingBottom="0dp"
+    tools:context=".MainActivity"
+    android:id="@+id/refreshview">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
     <ListView
         android:layout_width="match_parent"
@@ -22,11 +28,13 @@
         android:src="@drawable/ic_add_white_24dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
+        android:layout_gravity="bottom|right"
         android:layout_marginBottom="15dp"
         android:layout_marginRight="15dp"
         app:elevation="4dp"
         app:borderWidth="0dp"
         android:onClick="openAddActivity"
         />
+    </FrameLayout>
 
-</RelativeLayout>
+</android.support.v4.widget.SwipeRefreshLayout>

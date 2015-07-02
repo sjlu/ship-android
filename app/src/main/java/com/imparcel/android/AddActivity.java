@@ -40,7 +40,12 @@ public class AddActivity extends AppCompatActivity {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.action_add:
-                Package pkg = new Package(this.textInput.getText().toString());
+                String input = this.textInput.getText().toString().trim().toUpperCase();
+                if (input.equals("")) {
+                    this.textInput.setError("Tracking code is required");
+                    return false;
+                }
+                Package pkg = new Package(input);
                 pkg.save();
                 setResult(-1);
                 finish();

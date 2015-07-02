@@ -2,6 +2,7 @@ package com.imparcel.android;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ListView;
@@ -18,10 +19,21 @@ public class MainActivity extends AppCompatActivity {
     ListView listview;
     PackageListAdapter packageListAdapter;
 
+    private SwipeRefreshLayout mSwipeRefreshLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_activity);
+
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.refreshview);
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                packageListAdapter.refresh();
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
 
 //        Package.deleteAll(Package.class);
 //        Package pkg1 = new Package("9374889949033167223216");
@@ -49,6 +61,5 @@ public class MainActivity extends AppCompatActivity {
             packageListAdapter.refresh();
         }
     }
-
 
 }
