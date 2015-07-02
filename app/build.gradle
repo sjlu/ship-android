@@ -28,4 +28,5 @@ dependencies {
     compile 'com.squareup.okhttp:okhttp:2.4.0'
     compile "com.google.android.gms:play-services:7.5.+"
     compile "com.google.android.gms:play-services-gcm:7.5.0"
+    compile 'me.dm7.barcodescanner:zbar:1.7.2'
 }
