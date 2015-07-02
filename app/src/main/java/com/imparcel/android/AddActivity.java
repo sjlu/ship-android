@@ -76,7 +76,7 @@ public class AddActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             String trackingCode = data.getStringExtra("contents");
-            
+
             trackingCode = trackingCode.replace("42010003", "");
 
             textInput.setText(trackingCode);
