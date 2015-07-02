@@ -3,6 +3,7 @@ package com.imparcel.android;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -75,9 +76,8 @@ public class AddActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             String trackingCode = data.getStringExtra("contents");
-
-            String[] splitBySpace = trackingCode.split("\\s");
-            trackingCode = splitBySpace[splitBySpace.length-1];
+            
+            trackingCode = trackingCode.replace("42010003", "");
 
             textInput.setText(trackingCode);
 
