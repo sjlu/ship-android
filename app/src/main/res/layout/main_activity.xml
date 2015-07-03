@@ -1,4 +1,4 @@
-<android.support.v4.widget.SwipeRefreshLayout
+<RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -8,18 +8,18 @@
     android:paddingRight="0dp"
     android:paddingTop="0dp"
     android:paddingBottom="0dp"
-    tools:context=".MainActivity"
-    android:id="@+id/refreshview">
+    tools:context=".MainActivity">
 
-    <FrameLayout
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/refreshview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/listview">
-    </ListView>
+        android:layout_height="wrap_content">
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/listview">
+        </ListView>
+    </android.support.v4.widget.SwipeRefreshLayout>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/myFAB"
@@ -35,6 +35,5 @@
         app:borderWidth="0dp"
         android:onClick="openAddActivity"
         />
-    </FrameLayout>
 
-</android.support.v4.widget.SwipeRefreshLayout>
+</RelativeLayout>

@@ -76,15 +76,20 @@ public class AddActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1) {
             String trackingCode = data.getStringExtra("contents");
+            String format = data.getStringExtra("format");
+            Log.e("trackingCode", trackingCode);
+            Log.e("format", format);
 
-            trackingCode = trackingCode.replace("42010003", "");
+            if (format.equalsIgnoreCase("code128")) {
+                trackingCode = trackingCode.substring(8);
+            }
 
             textInput.setText(trackingCode);
 
             saveCurrentInput();
             closeAndFinish();
 
-//            String format = data.getStringExtra("format");
+
         }
     }
 
